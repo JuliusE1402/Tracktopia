@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TrackTopia</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" href="favicon-16x16.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="game.css">
+    <script src="game.js" async defer></script>
+</head>
+<body>
+    <header>
+        <h1 onclick="location.href='home.html'">TrackTopia</h1>
+    </header>
+    <div class="tv-overlay"></div> <!-- Add this div for the TV twitching effect -->
+    <main>
+        <dialog data-modal id="modal">
+            <div id="win-lose"></div>
+            <p id="solution-text"></p>
+            <a id="link-of-image"><img id="image-of-song"></a>
+            <audio-player id="solution-audio"></audio-player>
+            <button id="next-button">NEXT</button>
+        </dialog>
+        <dialog data-modal id="result-modal">
+            <p id="result-score"></p>
+            <p id="twitter-github">If you like this website, please consider giving it a star on <a href="https://github.com/JuliusE1402/spotify_quiz" target="_blank">GitHub</a> or following me on <a href="https://twitter.com/JuliusE1402" target="_blank">Twitter</a></p>
+            <div class="button-container">
+                <button id="final-exit-button" class="result-modal-buttons">EXIT</button>
+                <button id="play-again" class="result-modal-buttons">PLAY AGAIN</button>
+            </div>
+        </dialog>
+        <p id="round-counter">Round: 1</p>
+        <div id="track-audio-box">
+            <p id="not-playable"></p>
+        </div>
+        <div class="text-field-box">
+            <input type="text" class="form-control" id="text-field" name="guessField" list="track-list" placeholder="Guess The Track">
+            <datalist id="artist-list">
+                
+            </datalist>
+        </div>
+        <button id="submit-button">SUBMIT</button>
+    </main>
+    <footer>
+        <button id="exit-button">EXIT</button>
+    </footer>
+</body>
+</html>
