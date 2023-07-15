@@ -62,6 +62,7 @@ let roundCount = 1;
 let previousNumbers = [];
 let score = 0;
 let timeOut;
+let isClicked = false;
 
 localStorage.setItem("round", roundCount);
 
@@ -160,6 +161,7 @@ function clearOptions() {
 nextButton.addEventListener("click", () => {
 	audioPlayer.setAttribute("src", "");
 	textField.value = "";
+	isClicked = false;
 
 	nextRound();
 });
@@ -232,42 +234,47 @@ audio.addEventListener("timeupdate", function (event) {
 });
 
 audio.addEventListener("playButtonPressed", () => {
-	timeOut = setTimeout(() => {
-		textField.value = "";
+	if(isClicked !== true){
+		isClicked = true;
 
-		anchor.setAttribute("href", gameTracks[randomNumber].url);
-
-		img.setAttribute("src", gameTracks[randomNumber].image);
-		img.style.width = "20%";
-		img.style.paddingBottom = "2%";
-		anchor.appendChild(img);
-
-		paragraph.innerHTML =
-			gameTracks[randomNumber].title + " by " + gameTracks[randomNumber].artist;
-		paragraph.style.color = "black";
-		paragraph.style.fontSize = "20px";
-		paragraph.style.textAlign = "left";
-
-		audioPlayer.setAttribute("src", `${gameTracks[randomNumber].previewLink}`);
-		audioPlayer.setAttribute("bar-width", "5");
-		audioPlayer.setAttribute("bar-gap", "2");
-		audioPlayer.setAttribute("crossorigin", "");
-
-		winLoseIndicator.style.fontSize = "25px";
-
-		nextButton.style.marginTop = "2%";
-
-		audio.setAttribute("src", "");
-
-		winLoseIndicator.innerHTML = sayings[randomSayingNumber];
-		modal.style.backgroundColor = "rgba(255, 138, 138, 1)";
-
-		modal.appendChild(paragraph);
-		modal.appendChild(anchor);
-		modal.appendChild(audioPlayer);
-		modal.appendChild(nextButton);
-		modal.showModal();
-	}, countdown * 1000);
+		timeOut = setTimeout(() => {
+			textField.value = "";
+	
+			anchor.setAttribute("href", gameTracks[randomNumber].url);
+	
+			img.setAttribute("src", gameTracks[randomNumber].image);
+			img.style.width = "20%";
+			img.style.paddingBottom = "2%";
+			anchor.appendChild(img);
+	
+			paragraph.innerHTML =
+				gameTracks[randomNumber].title + " by " + gameTracks[randomNumber].artist;
+			paragraph.style.color = "black";
+			paragraph.style.fontSize = "20px";
+			paragraph.style.textAlign = "left";
+	
+			audioPlayer.setAttribute("src", `${gameTracks[randomNumber].previewLink}`);
+			audioPlayer.setAttribute("bar-width", "5");
+			audioPlayer.setAttribute("bar-gap", "2");
+			audioPlayer.setAttribute("crossorigin", "");
+	
+			winLoseIndicator.style.fontSize = "25px";
+	
+			nextButton.style.marginTop = "2%";
+	
+			audio.setAttribute("src", "");
+	
+			winLoseIndicator.innerHTML = sayings[randomSayingNumber];
+			modal.style.backgroundColor = "rgba(255, 138, 138, 1)";
+	
+			modal.appendChild(paragraph);
+			modal.appendChild(anchor);
+			modal.appendChild(audioPlayer);
+			modal.appendChild(nextButton);
+			modal.showModal();
+			isClicked = false;
+		}, countdown * 1000);
+	}
 });
 
 textField.addEventListener("keydown", function (event) {
@@ -358,6 +365,10 @@ modal.addEventListener("cancel", (event) => {
 });
 
 resultModal.addEventListener("cancel", (event) => {
+	event.preventDefault();
+});
+
+textField.addEventListener("click", (event) => {
 	event.preventDefault();
 });
 

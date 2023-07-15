@@ -10,7 +10,7 @@ statsButton.addEventListener("click", () => {
 });
 
 githubButton.addEventListener("click", () => {
-	window.open("https://github.com/JuliusE1402/spotify_quiz", "_blank");
+	window.open("https://github.com/JuliusE1402/Tracktopia", "_blank");
 });
 
 playButton.addEventListener("click", () => {
